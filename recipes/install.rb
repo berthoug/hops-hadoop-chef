@@ -1,5 +1,6 @@
 include_recipe "hops::_config"
 include_recipe "java"
+include_recipe "hops::docker"
 
 group node['kagent']['certs_group'] do
   action :create
@@ -43,8 +44,9 @@ if node['platform_family'].eql?("redhat")
   end
 end
 
-
+#we need to fix the gid to match the one in the docker image
 group node['hops']['group'] do
+  gid node['hops']['group_id']
   action :create
   not_if "getent group #{node['hops']['group']}"
   not_if { node['install']['external_users'].casecmp("true") == 0 }
@@ -85,7 +87,9 @@ user node['hops']['mr']['user'] do
   not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
+#we need to fix the uid to match the one in the docker image
 user node['hops']['yarnapp']['user'] do
+  uid node['hops']['yarnapp']['uid']
   gid node['hops']['group']
   system true
   manage_home true
@@ -105,6 +109,13 @@ user node['hops']['rm']['user'] do
 end
 
 group "video" do
+  action :modify
+  members [node['hops']['yarnapp']['user']]
+  append true
+  not_if { node['install']['external_users'].casecmp("true") == 0 }
+end
+
+group "docker" do
   action :modify
   members [node['hops']['yarnapp']['user']]
   append true
