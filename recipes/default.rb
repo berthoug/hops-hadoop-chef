@@ -62,14 +62,6 @@ if node.attribute?("hopsworks")
 end
 node.override['hopsworks']['user'] = hopsworksUser
 
-jupyterUser = "jupyter"
-if node.attribute?('jupyter')
-  if node['jupyter'].attribute?('user')
-    jupyterUser = node['jupyter']['user']
-  end
-end
-node.override['jupyter']['user'] = jupyterUser
-
 livyUser = "livy"
 if node.attribute?("livy")
   if node['livy'].attribute?("user")
@@ -135,7 +127,6 @@ template "#{node['hops']['conf_dir']}/core-site.xml" do
      :hopsworksUser => hopsworksUser,
      :livyUser => livyUser,
      :hiveUser => hiveUser,
-     :jupyterUser => jupyterUser,
      :sqoopUser => sqoopUser,
      :servingUser => servingUser,
      :flinkUser => flinkUser,
