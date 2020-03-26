@@ -3,8 +3,8 @@ include_attribute "kagent"
 include_attribute "ndb"
 include_attribute "kzookeeper"
 
-default['hops']['versions']                    = "2.8.2.2,2.8.2.3,2.8.2.4,2.8.2.5,2.8.2.6,2.8.2.7,2.8.2.8,2.8.2.9"
-default['hops']['version']                     = "2.8.2.10-SNAPSHOT"
+default['hops']['versions']                    = "2.8.2.2,2.8.2.3,2.8.2.4,2.8.2.5,2.8.2.6,2.8.2.7,2.8.2.8"
+default['hops']['version']                     = "2.8.2.9-SNAPSHOT"
 
 default['hops']['hdfs']['user']                = node['install']['user'].empty? ? "hdfs" : node['install']['user']
 default['hops']['group']                       = node['install']['user'].empty? ? "hadoop" : node['install']['user']
@@ -61,7 +61,7 @@ default['hops']['hdfs']['umask']               = "0022"
 
 
 default['hops']['root_url']                    = node['download_url']
-default['hops']['dist_url']                    = node['hops']['root_url'] + "/hops-" + node['hops']['version'] + ".tgz"
+default['hops']['dist_url']                    = node['hops']['root_url'] + "/franco/hops-" + node['hops']['version'] + ".tgz"
 
 default['hops']['install_protobuf']            = "false"
 default['hops']['protobuf_url']                = "https://protobuf.googlecode.com/files/protobuf-2.5.0.tar.gz"
@@ -225,7 +225,7 @@ default['ndb']['libndb']                    = "#{node['mysql']['version_dir']}/l
 default['mysql']['port']                    = default['ndb']['mysql_port']
 default['hadoop']['mysql_url']              = "jdbc:mysql://#{node['ndb']['mysql_ip']}:#{default['ndb']['mysql_port']}/"
 
-default['hops']['schema_dir']               = "#{node['hops']['root_url']}/hops-schemas"
+default['hops']['schema_dir']               = "#{node['hops']['root_url']}/franco/hops-schemas"
 
 default['hops']['log_level']                = "DEBUG"
 
@@ -235,7 +235,7 @@ if node['hops']['ndb']['version'] != ""
   node.override['ndb']['version'] = node['hops']['ndb']['version']
 end
 
-default['dal']['download_url']              = "#{node['hops']['root_url']}/ndb-dal-#{node['hops']['version']}-#{node['ndb']['version']}.jar"
+default['dal']['download_url']              = "#{node['hops']['root_url']}/franco/ndb-dal-#{node['hops']['version']}-#{node['ndb']['version']}.jar"
 default['dal']['lib_url']                   = "#{node['hops']['root_url']}/libhopsyarn-#{node['hops']['version']}-#{node['ndb']['version']}.so"
 default['nvidia']['download_url']           = "#{node['hops']['root_url']}/nvidia-management-#{node['hops']['version']}-#{node['ndb']['version']}.jar"
 default['hops']['libnvml_url']              = "#{node['hops']['root_url']}/libhopsnvml-#{node['hops']['version']}.so"
