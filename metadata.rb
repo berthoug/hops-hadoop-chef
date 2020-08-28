@@ -509,6 +509,14 @@ attribute "hops/aws_s3_region",
           :description => "AWS S3 Region. Default is eu-west-1",
           :type => 'string'
 
+attribute "hops/azure_connection_string",
+          :description => "Connection string to blob storage",
+          :type => 'string'
+
+attribute "hops/azure_blob_container",
+          :description => "Azure blob container to use with cloud storage",
+          :type => 'string'
+
 attribute "hops/cloud_bypass_disk_cache",
           :description => "Bypass disk cache",
           :type => 'string'

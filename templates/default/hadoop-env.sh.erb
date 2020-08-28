@@ -164,6 +164,8 @@ esac
 # Entries may be added/removed as needed.
 # export HADOOP_OPTIONAL_TOOLS="hadoop-aliyun,hadoop-kafka,hadoop-aws,hadoop-azure,hadoop-openstack,hadoop-azure-datalake"
 
+export AZURE_STORAGE_CONNECTION_STRING="<%= node['hops']['azure_connection_string'] %>"
+
 ###
 # Options for remote shell connectivity
 ###

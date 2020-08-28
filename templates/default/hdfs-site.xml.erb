@@ -543,6 +543,12 @@
 </property>
 
 <property>
+   <name>dfs.cloud.azure.container</name>
+   <value><%= node['hops']['azure_blob_container'] %></value>
+   <description>Hopsfs Azure blob container used to store file system blocks</description>
+</property>
+
+<property>
    <name>dfs.dn.cloud.bypass.cache</name>
    <value><%= node['hops']['cloud_bypass_disk_cache'] %></value>
    <description></description>
